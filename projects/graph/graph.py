@@ -93,22 +93,29 @@ class Graph:
         """
         q = Queue()
         visited = set()
+        print('visited', visited)
 
         q.enqueue([starting_vertex])
+        print('q enqueue', q.size())
 
         while q.size() > 0:
             v = q.dequeue()
             node = v[-1]
+            print('node', node)
 
             if node not in visited:
                 for neighbor in self.vertices[node]:
                     path = list(v)
+                    print('path pre-append', path)
                     path.append(neighbor)
+                    print('path post-append', path)
                     q.enqueue(path)
+                    print('q post enqueue path', q.size())
                     if neighbor == destination_vertex:
                         return path
                 
                 visited.add(node)
+                print('visited post-add node', visited)
 
     def dfs(self, starting_vertex, destination_vertex):
         """
