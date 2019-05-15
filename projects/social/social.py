@@ -139,8 +139,13 @@ class SocialGraph:
 
 if __name__ == '__main__':
     sg = SocialGraph()
-    sg.populateGraph(10, 2)
-    print(sg.friendships)
+    sg.populateGraph(1000, 2)
+    print(len(sg.friendships))
     connections = sg.getAllSocialPaths(1)
-    print(connections)
+    print(len(connections))
+    degrees = 0
+    for i in connections:
+        degrees += len(connections[i])
+
+    print((degrees/len(connections)) - 1)
 
