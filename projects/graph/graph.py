@@ -91,17 +91,56 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        q = Queue()
+        visited = set()
+        print('visited', visited)
+
+        q.enqueue([starting_vertex])
+        print('q enqueue', q.size())
+
+        while q.size() > 0:
+            v = q.dequeue()
+            node = v[-1]
+            print('node', node)
+
+            if node not in visited:
+                for neighbor in self.vertices[node]:
+                    path = list(v)
+                    print('path pre-append', path)
+                    path.append(neighbor)
+                    print('path post-append', path)
+                    q.enqueue(path)
+                    print('q post enqueue path', q.size())
+                    if neighbor == destination_vertex:
+                        return path
+                
+                visited.add(node)
+                print('visited post-add node', visited)
+
     def dfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing a path from
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass  # TODO
+        q = Stack()
+        visited = set()
 
+        q.push([starting_vertex])
 
+        while q.size() > 0:
+            v = q.pop()
+            node = v[-1]
 
+            if node not in visited:
+                for neighbor in self.vertices[node]:
+                    path = list(v)
+                    path.append(neighbor)
+                    q.push(path)
+                    if neighbor == destination_vertex:
+                        return path
+                
+                visited.add(node)
 
 
 if __name__ == '__main__':
